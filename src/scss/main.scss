@@ -1,0 +1,994 @@
+@import "utils/fonts";
+@import "utils/vars";
+@import "utils/mixins";
+@import "utils/reset";
+
+html {
+  line-height: $mainLineHeight;
+  font-size: $mainFontSize;
+  @media screen and (max-width: $desktopWidth) {
+    font-size: 16px;
+  }
+  @media screen and (max-width: $tableWidth) {
+    font-size: 15px;
+  }
+  @media screen and (max-width: $phoneWidth) {
+    font-size: 14px;
+  }
+}
+
+img {
+  width: inherit;
+}
+
+.header {
+  width: 100vw;
+  display: flex;
+  &__left-block {
+    width: 25%;
+    height: 700px;
+    @media screen and (max-width: $smDesktopWidth) {
+      height: 500px;
+    }
+    @media screen and (max-width: $mdPhoneWidth) {
+      width: 90%;
+      background-image: url("../assets/img/headerImagine.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      &::after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,.3);
+        position: absolute;
+      }
+    }
+    background-color: $mainBackgroundColor;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+  &__logo-desktop {
+    width: 290px;
+    height: 80px;
+    margin-top: 50px;
+    @media screen and (max-width: $tableWidth) {
+      width: 220px;
+      height: 60px;
+    }
+    @media screen and (max-width: $mdPhoneWidth) {
+      display: none;
+    }
+  }
+  &__logo-phone {
+    display: none;
+    @media screen and (max-width: $mdPhoneWidth) {
+      display: block;
+      width: 290px;
+      height: 90px;
+      margin-top: calc(50% - 45px);
+      position: relative;
+      z-index: 2;
+    }
+  }
+  &__title {
+    font-size: 55px;
+    line-height: 1.3;
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    bottom: 10%;
+    left: 25%;
+    z-index: 1;
+    text-transform: uppercase;
+    padding-left: 10px;
+    font-weight: normal;
+    &--background {
+      background-color: $blockColorRodeoDust;
+      color: $headerFontColor;
+      padding: 10px 90px 10px 10px;
+      @media screen and (max-width: $smDesktopWidth) {
+        padding: 7px 80px 7px 7px;
+      }
+      @media screen and (max-width: $mdPhoneWidth) {
+        font-size: 25px;
+        padding: 5px 30px 5px 5px;
+      }
+    }
+    @media screen and (max-width: $smDesktopWidth) {
+      font-size: 35px;
+    }
+    @media screen and (max-width: $mdPhoneWidth) {
+      font-size: 30px;
+      left: 5%;
+      color: $headerFontColor;
+    }
+  }
+  &__background-img {
+    width: 55%;
+    height: 700px;
+    @media screen and (max-width: $smDesktopWidth) {
+      height: 500px;
+    }
+    @media screen and (max-width: $tableWidth) {
+      width: 65%;
+    }
+    @media screen and (max-width: $mdPhoneWidth) {
+      display: none;
+    }
+    background-image: url("../assets/img/headerImagine.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    &--gradient {
+      background: rgba(0, 0, 0, 0.3);
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &-nav {
+    width: 20%;
+    height: 700px;
+    background-color: $blockColorCello;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    padding-left: 40px;
+    @media screen and (max-width: $smDesktopWidth) {
+      height: 500px;
+    }
+    @media screen and (max-width: $tableWidth) {
+      width: 10%;
+      position: absolute;
+      right: 0;
+      z-index: 2;
+      justify-content: space-evenly;
+      transition: all 0.3s;
+      &__controls {
+        position: absolute;
+        top: 5%;
+        left: 50%;
+        transform: translate(-50%);
+        width: 30px;
+        cursor: pointer;
+      }
+      &__control {
+        display: inline-block;
+        width: 30px;
+        height: 3px;
+        background-color: $navButtonColor;
+        border-radius: 5px;
+        position: absolute;
+        &::before,
+        &::after {
+          content: "";
+          width: 30px;
+          height: 3px;
+          border-radius: 5px;
+          background-color: $navButtonColor;
+          position: absolute;
+        }
+        &::before {
+          top: -7px;
+        }
+        &::after {
+          top: 7px;
+        }
+      }
+      &__link {
+        transform: scaleX(0);
+        font-size: 0px;
+      }
+    }
+    &__card {
+      width: 25px;
+      height: 25px;
+      transform: scale(-1, 1);
+      cursor: pointer;
+      @media screen and (max-width: $tableWidth) {
+        display: none;
+      }
+    }
+    &__menu {
+      display: flex;
+      flex-direction: column;
+      @media screen and (max-width: $tableWidth) {
+        visibility: hidden;
+        transform: scaleY(0);
+        transition: all 0.3s;
+      }
+    }
+    &__item {
+      margin: 15px 0;
+      @media screen and (max-width: $smDesktopWidth) {
+        font-size: 13px;
+        margin: 10px 0;
+      }
+    }
+    &__link {
+      font-family: $nunitoFont;
+      color: $headerFontColor;
+      font-weight: normal;
+      position: relative;
+      &:before {
+        content: "";
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        background-color: $headerFontColor;
+        transition: all 0.2s;
+      }
+      &:hover::before {
+        width: 100%;
+      }
+    }
+    &.opened {
+      @media screen and (max-width: $tableWidth) {
+        width: 20%;
+        padding-left: 25px;
+        .header-nav {
+          width: 20%;
+          &__control {
+            background-color: transparent;
+            &::before {
+              transform: rotate(45deg);
+              top: 0;
+            }
+            &::after {
+              transform: rotate(-45deg);
+              top: 0;
+            }
+          }
+          &__card {
+            display: block;
+          }
+          &__menu {
+            visibility: visible;
+            transform: scaleY(1);
+          }
+          &__link {
+            transform: scaleX(0);
+            font-size: 14px;
+          }
+        }
+      }
+      @media screen and (max-width: $phoneWidth) {
+        width: 40%;
+      }
+      @media screen and (max-width: $mdPhoneWidth) {
+        width: 100vw;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}
+
+.section {
+  width: 100vw;
+}
+
+.base {
+  width: inherit;
+  padding: 85px 0 50px;
+  background-color: $mainBackgroundColor;
+  &__top-block {
+    display: flex;
+    justify-content: center;
+  }
+  &__subtitle {
+    @include mainSubtitle;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  &__title {
+    @include mainTitle;
+  }
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  &__item {
+    width: 220px;
+    margin: 20px;
+    margin-top: 50px;
+    transition: all 0.3s;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.1);
+    }
+    &-img {
+      display: block;
+      width: 50%;
+      height: 50%;
+      margin: 0 auto;
+      @media screen and (max-width: $phoneWidth) {
+        width: 60%;
+        height: 60%;
+      }
+    }
+    &-header {
+      font-size: 24px;
+      font-family: $nunitoFont;
+      color: $fontColorCello;
+      @media screen and (max-width: $phoneWidth) {
+        font-size: 30px;
+      }
+      color: #232c38;
+      text-align: center;
+      margin-top: 15px;
+      margin-bottom: 10px;
+    }
+    &-text {
+      text-align: center;
+      font-size: 16px;
+      font-family: $nunitoFont;
+      color: $fontColorCello;
+      @media screen and (max-width: $phoneWidth) {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+.coffee {
+  width: inherit;
+  padding: 90px 0 120px 0;
+  position: relative;
+  background-color: $mainBackgroundColor;
+  overflow: hidden;
+  &__btn {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: #c7a17a;
+    border-radius: 50%;
+    right: 1%;
+    z-index: 4;
+    top: 50%;
+    transform: translate(-50%, 20%);
+    cursor: pointer;
+    @media screen and (max-width: $phoneWidth) {
+      right: -3%;
+      transform: translate(-50%, 70%);
+    }
+  }
+  &__leftBtn {
+    width: 30px;
+    height: 3px;
+    background-color: $sliderNextButtonColor;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border-radius: 5px;
+    &::before {
+      content: "";
+      position: absolute;
+      background-color: $sliderNextButtonColor;
+      width: 15px;
+      height: 3px;
+      top: -4px;
+      right: 0;
+      transform: rotate(30deg);
+      border-radius: 5px;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      background-color: $sliderNextButtonColor;
+      width: 15px;
+      height: 3px;
+      top: 4px;
+      right: 0;
+      transform: rotate(-30deg);
+      border-radius: 5px;
+    }
+  }
+  &__leftSection {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 25%;
+    height: 100%;
+    background-color: $blockColorCello;
+    @media screen and (min-width: 881px) and (max-width: $smDesktopWidth) {
+      width: 25%;
+    }
+    @media screen and (min-width: $phoneWidth + 1) and (max-width: $tableWidth) {
+      width: 15%;
+    }
+    @media screen and (max-width: $phoneWidth) {
+      display: none;
+    }
+  }
+  &__top-block {
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+  }
+  &__subtitle {
+    @include mainSubtitle;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  &__title {
+    @include mainTitle;
+  }
+  &__proposition {
+    width: 100%;
+    padding: 10px 0;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    left: 3%;
+    @media screen and (min-width: $tableWidth + 1) and (max-width: $medDesktopWidth) {
+      left: 25%;
+    }
+    @media screen and (min-width: $phoneWidth + 1) and (max-width: $tableWidth) {
+      left: 15%;
+    }
+    @media screen and (max-width: $phoneWidth) {
+      width: 300px;
+      height: 470px;
+      border-radius: 15px;
+      left: 50%;
+      transform: translate(-50%);
+    }
+  }
+  &__items {
+    position: relative;
+    width: 520px * 4;
+    height: 480px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    left: 0%;
+    transition: all 0.5s;
+    @media screen and (max-width: $phoneWidth) {
+      width: 2400px;
+    }
+  }
+  &__item {
+    width: 480px;
+    height: 225px;
+    background-color: $sliderBGColor;
+    display: flex;
+    box-shadow: 0 4px 24px 0 rgba(205, 205, 205, 0.5);
+    transition: all 0.3s;
+    &:nth-child(3),
+    &:nth-child(4),
+    &:nth-child(7),
+    &:nth-child(8) {
+      opacity: 0.4;
+    }
+    &:hover {
+      transform: scale(1.1);
+      @media screen and (max-width: $phoneWidth) {
+        transform: scale(1);
+      }
+    }
+    @media screen and (max-width: $phoneWidth) {
+      width: 300px;
+      height: 470px;
+      flex-direction: column;
+    }
+  }
+  &__imgs {
+    width: 200px;
+    height: inherit;
+    background-color: $sliderImgBGColor;
+    @media screen and (max-width: $phoneWidth) {
+      width: 300px;
+      height: 240px;
+    }
+  }
+  &__img {
+    display: flex;
+    width: 220px;
+    height: inherit;
+    margin: 0 auto;
+  }
+  &__info {
+    display: flex;
+    margin-left: 5%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    @media screen and (max-width: $phoneWidth) {
+      height: 200px;
+      align-items: flex-start;
+      justify-content: space-around;
+    }
+    &-price {
+      color: $sliderPriceColor;
+      font-family: $nunitoFont;
+      font-size: 20px;
+    }
+    &-header {
+      font-family: $nunitoFont;
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 1.17;
+      color: $sliderTitleColor;
+    }
+    &-description {
+      font-family: $nunitoFont;
+      font-size: 16px;
+      font-weight: 300;
+      color: $sliderDescriptionColor;
+    }
+    &-btns {
+      display: flex;
+      align-items: center;
+    }
+    &-buy {
+      @include buttonBuy;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+    &-info {
+      color: $fontColorCello;
+      font-style: 16px;
+      margin: 0 15px;
+    }
+  }
+}
+
+.giftset {
+  width: inherit;
+  position: relative;
+  background-color: $blockColorSolitude;
+  padding: 85px 0 125px 0;
+  z-index: 1;
+  @media screen and (max-width: $tableWidth) {
+    padding: 60px 0 20px 0;
+  }
+  &__buttons {
+    width: 100px;
+    height: 460px;
+    background-color: $giftButtonColor;
+    position: absolute;
+    right: -13%;
+    @media screen and (min-width: $tableWidth + 1) and (max-width: $smDesktopWidth) {
+      width: 75px;
+      height: 401px;
+      right: -13%;
+    }
+    @media screen and (min-width: $phoneWidth + 1) and (max-width: $tableWidth) {
+      width: 400px;
+      height: 70px;
+      display: flex;
+      left: 0;
+      top: -13%;
+    }
+    @media screen and (max-width: $phoneWidth) {
+      width: 100%;
+      height: 70px;
+      display: flex;
+      left: 0;
+      bottom: -9.7%;
+    }
+  }
+  &__button {
+    width: inherit;
+    height: 153.5px;
+    text-align: center;
+    line-height: 140px;
+    color: $fontColorCello;
+    font-size: 30px;
+    font-weight: 100;
+    font-family: $nunitoFont;
+    transition: all 0.3s;
+    @media screen and (min-width: $tableWidth + 1) and (max-width: $smDesktopWidth) {
+      height: 133.5px;
+    }
+    @media screen and (min-width: $phoneWidth + 1) and (max-width: $tableWidth) {
+      width: 134px;
+      height: 70px;
+      line-height: 70px;
+    }
+    @media screen and (max-width: $phoneWidth) {
+      height: 45px;
+      line-height: 45px;
+      font-size: 23px;
+    }
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.1);
+      background-color: $giftActiveButtonColor;
+      @media screen and (max-width: $smDesktopWidth) {
+        transform: scale(1);
+      }
+    }
+    &.active {
+      background-color: $giftActiveButtonColor;
+      box-shadow: 1px 0 10px 0 rgba(205, 205, 205, 0.5);
+    }
+  }
+  &__top-block {
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+  }
+  &__subtitle {
+    @include mainSubtitle;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  &__title {
+      @include mainTitle;
+  }
+  &__rightSection {
+    width: 25%;
+    height: 100%;
+    background-color: $mainBackgroundColor;
+    position: absolute;
+    right: 0;
+    top: 0;
+    @media screen and (max-width: $medDesktopWidth) {
+      width: 15%;
+    }
+  }
+  &__contents {
+    width: 800px;
+    height: 460px;
+    background-color: $giftContentBlockColor;
+    z-index: 3;
+    margin: 70px auto;
+    position: relative;
+    box-shadow: 1px 0 10px 0 rgba(205, 205, 205, 0.5);
+    @media screen and (min-width: $smDesktopWidth + 1) and (max-width: $medDesktopWidth) {
+      width: 700px;
+    }
+    @media screen and (min-width: $tableWidth + 1) and (max-width: $smDesktopWidth) {
+      width: 600px;
+      height: 400px;
+    }
+    @media screen and (min-width: $phoneWidth + 1) and (max-width: $tableWidth) {
+      width: 600px;
+      height: 550px;
+    }
+    @media screen and (max-width: $phoneWidth) {
+      width: 100%;
+      height: 750px;
+    }
+  }
+  &__block {
+    width: 400px;
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translate(0, -50%);
+    opacity: 0;
+    transition: all 0.3s;
+    @media screen and (min-width: $tableWidth) and (max-width: $smDesktopWidth) {
+      width: 350px;
+    }
+    @media screen and (min-width: $phoneWidth + 1) and (max-width: $tableWidth) {
+      width: 280px;
+      height: 550px;
+      right: 2%;
+    }
+    @media screen and (max-width: $phoneWidth) {
+      width: 300px;
+      height: 470px;
+      transform: translate(0, -20%);
+      right: 2%;
+    }
+  }
+  &__content {
+    display: flex;
+    &-ims {
+      width: 460px;
+      position: absolute;
+      height: 460px;
+      left: -23%;
+      top: 50%;
+      transform: translate(0, -60%);
+      opacity: 0;
+      transition: all 0.9s;
+      @media screen and (min-width: $tableWidth + 1) and (max-width: $medDesktopWidth) {
+        width: 400px;
+        transform: translate(0, -60%);
+        left: -27%;
+      }
+      @media screen and (min-width: $phoneWidth + 1) and (max-width: $tableWidth) {
+        left: -5%;
+        transform: translate(0, -50%);
+        width: 350px;
+      }
+      @media screen and (max-width: $phoneWidth) {
+        width: inherit;
+        height: 200px;
+        left: 3%;
+        top: 11%;
+      }
+    }
+    &-im {
+      width: 500px;
+      @media screen and (min-width: $tableWidth + 1) and (max-width: $smDesktopWidth) {
+        width: 400px;
+      }
+      @media screen and (min-width: $phoneWidth + 1) and (max-width: $tableWidth) {
+        width: 350px;
+      }
+      @media screen and (max-width: $phoneWidth) {
+        width: 310px;
+      }
+    }
+    &-price {
+      color: $giftPriceColor;
+      font-family: $nunitoFont;
+      font-size: 20px;
+    }
+    &-header {
+      font-family: $nunitoFont;
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 1.17;
+      color: $giftTitleColor;
+    }
+    &-description {
+      font-family: $nunitoFont;
+      font-size: 16px;
+      font-weight: 300;
+      color: $giftDescriptionColor;
+    }
+    &-btns {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+    &-buy {
+      @include buttonBuy;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+    &-info {
+      color: $fontColorCello;
+      font-style: 16px;
+      margin: 0 15px;
+      cursor: pointer;
+    }
+    &-coffee {
+      display: flex;
+      justify-content: space-around;
+      &-seed {
+        display: flex;
+        align-items: center;
+      }
+      &-title {
+        margin-left: 10px;
+        line-height: 1;
+        font-family: $nunitoFont;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.combo {
+  width: inherit;
+  position: relative;
+  background-color: $mainBackgroundColor;
+  padding: 10px 0 80px 0;
+  z-index: 1;
+  @media screen and (max-width: $medDesktopWidth) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &__top-block {
+    display: flex;
+    justify-content: center;
+  }
+  &__subtitle {
+    @include mainSubtitle;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  &__title {
+    @include mainTitle;
+  }
+  &__btn {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: $sliderNextBGColor;
+    border-radius: 50%;
+    right: 1%;
+    z-index: 4;
+    top: 50%;
+    transform: translate(-50%, 20%);
+    cursor: pointer;
+    @media screen and (min-width: $tableWidth + 1) and (max-width: $medDesktopWidth + 65) {
+      transform: translate(0, -15%);
+    }
+    @media screen and (min-width: $phoneWidth + 1) and (max-width: $tableWidth) {
+      right: 10%;
+    }
+    @media screen and (max-width: $phoneWidth) {
+      transform: translate(-10%, -15%);
+    }
+  }
+  &__leftBtn {
+    width: 30px;
+    height: 3px;
+    background-color: $sliderNextButtonColor;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border-radius: 5px;
+    &::before {
+      content: "";
+      position: absolute;
+      background-color: $sliderNextButtonColor;
+      width: 15px;
+      height: 3px;
+      top: -4px;
+      right: 0;
+      transform: rotate(30deg);
+      border-radius: 5px;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      background-color: $sliderNextButtonColor;
+      width: 15px;
+      height: 3px;
+      top: 4px;
+      right: 0;
+      transform: rotate(-30deg);
+      border-radius: 5px;
+    }
+  }
+  &__rightBlock {
+    width: 25%;
+    height: 100%;
+    background-color: $fontColorCello;
+    position: absolute;
+    right: 0;
+    top: 0;
+    @media screen and (max-width: $medDesktopWidth) {
+      width: 15%;
+    }
+  }
+  &__prop {
+    width: inherit;
+    height: 610px;
+    overflow: hidden;
+    position: relative;
+    margin-left: 5%;
+    @media screen and (min-width: $tableWidth + 1) and (max-width: $medDesktopWidth) {
+      width: 625px;
+      margin-left: 0;
+    }
+    @media screen and (max-width: $tableWidth) {
+      width: 300px;
+      -webkit-border-radius: 20px;
+      margin-left: 0;
+    }
+  }
+  &__sliders {
+    width: 390px * 6;
+    height: 610px;
+    display: flex;
+    justify-content: space-between;
+    transition: all 0.8s;
+    @media screen and (min-width: 1165px) and (max-width: 1200px) {
+      width: 340px * 6;
+    }
+    @media screen and (min-width: $tableWidth + 1) and (max-width: 1164px) {
+      width: 315px * 6;
+    }
+    @media screen and (max-width: $tableWidth) {
+      width: 300px * 6;
+    }
+  }
+  &__slider {
+    width: 360px;
+    height: 610px;
+    transition: all 0.8s;
+    &:nth-child(4),
+    &:nth-child(5),
+    &:nth-child(6) {
+      opacity: 0.4;
+    }
+    @media screen and (min-width: 1165px) and (max-width: 1200px) {
+      width: 330px;
+    }
+    @media screen and (max-width: 1164px) {
+      width: 300px;
+    }
+  }
+  &__imgs {
+    width: inherit;
+    height: 330px;
+    background-color: #cfdcf3;
+    display: flex;
+    justify-content: center;
+    @media screen and (max-width: 1164px) {
+      height: 300px;
+    }
+  }
+  &__info {
+    width: inherit;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: $sliderBGColor;
+    padding: 30px;
+    @media screen and (max-width: $tableWidth) {
+      height: 320px;
+    }
+    &-price {
+      color: $sliderPriceColor;
+      font-family: $nunitoFont;
+      font-size: 20px;
+      display: flex;
+      align-items: flex-start;
+    }
+    &-old-price {
+      text-decoration: line-through;
+      color: $sliderOldPriceColor;
+      font-size: 13px;
+      margin-left: 15px;
+    }
+    &-header {
+      font-family: $nunitoFont;
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 1.17;
+      color: $sliderTitleColor;
+    }
+    &-description {
+      font-family: $nunitoFont;
+      font-size: 16px;
+      font-weight: 300;
+      color: $sliderDescriptionColor;
+    }
+    &-btns {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    &-buy {
+      @include buttonBuy;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+    &-info {
+      color: $fontColorCello;
+      font-style: 16px;
+      margin: 0 15px;
+    }
+  }
+}
+
+.footer {
+  width: inherit;
+  padding: 20px;
+  background-color: $blockColorSolitude;
+  display: flex;
+  justify-content: center;
+  &__title {
+    font-size: 13px;
+    color: $fontColorCello;
+    font-family: $nunitoFont;
+    font-weight: 100;
+  }
+}

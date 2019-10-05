@@ -1,0 +1,37 @@
+@function rem($pixels, $context: $mainFontSize) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+  @return $pixels / $context * 1rem;
+}
+
+@mixin mainSubtitle {
+  font-size: 20px;
+  font-family: $nunitoFont;
+  color: $fontColorCello;
+}
+
+@mixin mainTitle {
+  font-size: 30px;
+  text-transform: uppercase;
+  font-family: $montserratFont;
+  font-weight: 600;
+}
+
+@mixin buttonBuy {
+  width: 134px;
+  height: 32px;
+  border-radius: 19px;
+  background-color: $sliderButtonColor;
+  border: 1px solid $sliderButtonColor;
+  font-family: $nunitoFont;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: #f9fbff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
